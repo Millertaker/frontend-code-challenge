@@ -7,9 +7,8 @@ import './App.css';
 const URL_PATH = "https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json";
 
 class App extends Component {
-  pokemons = [];
-
   state = {
+    pokemons: [],
     searchResult: [],
     loader: true
   }
@@ -23,8 +22,8 @@ class App extends Component {
     var data = await response.json();
 
     if(response.status === 200){
-      this.pokemons = data;
       this.setState({
+        pokemons: data,
         loader: false
       });
     } else 
@@ -35,7 +34,7 @@ class App extends Component {
     e.preventDefault();
 
     var inputValue = e.target.value;
-    var nameResults = searchByName(this.pokemons, inputValue);
+    var nameResults = searchByName(this.state.pokemons, inputValue);
 
     if(inputValue.length === 0) {
       this.setState({ searchResult: [] });
@@ -43,7 +42,7 @@ class App extends Component {
     }
     
     if(nameResults.length < 4){
-      let typeResults = searchByType(this.pokemons, inputValue, nameResults.length)
+      let typeResults = searchByType(this.state.pokemons, inputValue, nameResults.length)
       this.setState({ searchResult: nameResults.concat(typeResults) });
     } else  this.setState({ searchResult: nameResults });
   }
