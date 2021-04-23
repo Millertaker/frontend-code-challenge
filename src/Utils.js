@@ -1,20 +1,20 @@
 const searchByName = (json, inputValue) => {
-  var searchByName = json.filter(e => e.Name.toLowerCase().includes(inputValue.toLowerCase()));
-  searchByName = sortJSON(searchByName);
-  searchByName = searchByName.slice(0,4);
+  var resultsByName = json.filter(e => e.Name.toLowerCase().includes(inputValue.toLowerCase()));
+  resultsByName = sortJSON(resultsByName);
+  resultsByName = resultsByName.slice(0,4);
 
-  return searchByName;
+  return resultsByName;
 }
 
 const searchByType = (json, inputValue, lastResult) => {
-  var searchByType = json.filter(e => {
+  var resultsByType = json.filter(e => {
     let found = e.Types.filter(z => z.toLowerCase().includes(inputValue.toLowerCase()));
     return found.length > 0;
   }); 
-  searchByType = sortJSON(searchByType);
-  searchByType = searchByType.slice(0, (4 - lastResult))
+  resultsByType = sortJSON(resultsByType);
+  resultsByType = resultsByType.slice(0, (4 - lastResult))
 
-  return searchByType;
+  return resultsByType;
 }
 
 const sortJSON = (input) => {
@@ -30,3 +30,4 @@ export {
   searchByType, 
   sortJSON
 }
+
