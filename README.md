@@ -13,7 +13,6 @@ git checkout [react-native|angular]
 ## How to use
 
 ```bash
-git clone https://github.com/Nikodermus/frontend-code-challenge.git
 cd frontend-code-challenge
 npm install
 npm run start
